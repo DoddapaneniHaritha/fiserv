@@ -16,6 +16,9 @@ public class KafkaErrorHandlerConfig {
         // Send failed messages to DLT
         DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(template);
 
+
+
+
         // Retry 3 times with 1-second interval
         FixedBackOff backOff = new FixedBackOff(1000L, 3);
 
