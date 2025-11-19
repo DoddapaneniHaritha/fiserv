@@ -1,4 +1,5 @@
 package com.example.demo;
+import com.example.demo.producer.KafkaProducer;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.context.EmbeddedKafka;

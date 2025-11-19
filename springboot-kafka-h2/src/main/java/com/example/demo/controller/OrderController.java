@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.KafkaProducer;
 import com.example.demo.entity.Order;
+import com.example.demo.producer.KafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

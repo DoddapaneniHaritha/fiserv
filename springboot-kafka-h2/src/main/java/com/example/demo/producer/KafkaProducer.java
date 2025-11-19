@@ -1,4 +1,6 @@
-package com.example.demo;
+package com.example.demo.producer;
+
+
 import com.example.demo.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
