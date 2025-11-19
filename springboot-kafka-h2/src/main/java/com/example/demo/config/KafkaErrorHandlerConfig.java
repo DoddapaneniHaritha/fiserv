@@ -13,7 +13,7 @@ public class KafkaErrorHandlerConfig {
 
     @Bean
     public DefaultErrorHandler errorHandler(KafkaTemplate<Object, Object> template) {
-        // Send failed messages to DLT
+
         DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(template);
 
         FixedBackOff backOff = new FixedBackOff(1000L, 3);
