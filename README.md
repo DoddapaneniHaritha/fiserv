@@ -20,3 +20,24 @@ Consumers read and log data from the same topic. There are three consumers in di
 Finally, the data is stored in the database.
 
 Git Link: git clone https://github.com/DoddapaneniHaritha/fiserv.git
+
+Run zookeeper:
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+
+Run Kafka server
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+
+Create a topic:
+.\bin\windows\kafka-topics.bat --create --topic quickstart-events --bootstrap-server localhost:9092   
+
+
+Curl: curl --location 'http://localhost:8081/orders/Customer6' \
+--header 'Content-Type: application/json' \
+--data '{
+    "orderId": "1236",
+    "amount":12.789,
+    "status" :"Single2"
+
+}'
