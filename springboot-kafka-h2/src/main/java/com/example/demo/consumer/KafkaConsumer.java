@@ -43,7 +43,6 @@ public class KafkaConsumer {
         }
     }
 
-
     @KafkaListener(topics = "orders-topics", groupId = "group-B")
     public void consumeGroupB(ConsumerRecord<String, String> record) {
         log.info("[Group-B] Key: {} | Value: {} | Partition: {} | Offset: {}",
