@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 public class KafkaProducer {
     @Autowired
     KafkaTemplate<String, Order> kafkaTemplate;
-
-
     public void sendOrder(String customerId, Order order) {
         kafkaTemplate.send("orders-topics", customerId, order)
                 .whenComplete((result, ex) -> {
