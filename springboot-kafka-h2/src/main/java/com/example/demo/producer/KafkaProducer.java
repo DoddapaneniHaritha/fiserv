@@ -8,7 +8,6 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 
 
-
 @Service
 public class KafkaProducer {
     @Autowired
