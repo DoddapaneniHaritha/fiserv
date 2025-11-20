@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Order;
-import com.example.demo.producer.KafkaProducer;
+
+import com.example.demo.service.KafkaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,13 +12,16 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
 
-        @Autowired
-        KafkaProducer producer;
+    @Autowired
+    KafkaService kafkaservice;
 
-        @PostMapping("/{customerId}")
-        public String createOrder(@PathVariable String customerId, @RequestBody Order order) {
-            producer.sendOrder(customerId, order);
-            return "Order sent successfully!";
-        }
+    @PostMapping("/{customerId}")
+    public ResponseEntity<String> createOrder(@PathVariable String customerId, @RequestBody Order order) {
+
+        //Delegate to KafkaService to send the order to Kafka topic
+        String response = kafkaservice.sendOrder(customerId, order);
+        return ResponseEntity.ok(response);
+
     }
+}
 

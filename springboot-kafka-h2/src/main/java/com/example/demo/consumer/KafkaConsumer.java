@@ -20,30 +20,35 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "orders-topics", groupId = "my-group")
     public void consumeOrder(ConsumerRecord<String, Order> record, Acknowledgment ack) {
-
         try {
-            Order order = record.value(); // ✅ Get the actual Order object
+            // Extract the Order object from the Kafka message
+            Order order = record.value();
+
+            // Save the order to the database
             Order savedOrder = orderRepository.save(order);
 
+            // Log order details
             log.info("Order Received -> ID: {} | Amount: {} | Status: {}",
                     order.getOrderId(), order.getAmount(), order.getStatus());
 
-            System.out.println("Key: " + record.key() +
-                    " | Partition: " + record.partition() +
-                    " | OrderId: " + savedOrder.getOrderId() +
-                    " | Status: " + savedOrder.getStatus()+
-                    " | Amount :"  + savedOrder.getAmount());
+            // Log Kafka message metadata and saved order details
+            log.info("Key: {} | Partition: {} | OrderId: {} | Status: {} | Amount: {}",
+                    record.key(),
+                    record.partition(),
+                    savedOrder.getOrderId(),
+                    savedOrder.getStatus(),
+                    savedOrder.getAmount());
 
-
-
-            ack.acknowledge(); // Commit offset after successful processing
+            // Commit the offset after successful processing
+            ack.acknowledge();
         } catch (Exception e) {
-            log.error("Error processing message: {}", e.getMessage());
-            System.err.println("Error processing message: " + e.getMessage());
+            // Log any error that occurs during processing
+            log.error("Error processing message: {}", e.getMessage(), e);
         }
     }
 
-    @KafkaListener(topics = "orders-topics", groupId = "group-B")
+
+    @KafkaListener(topics = "orders-topics", groupId = "group-B") // belongs to same Topic but with diff group name
     public void consumeGroupB(ConsumerRecord<String, String> record) {
         log.info("[Group-B] Key: {} | Value: {} | Partition: {} | Offset: {}",
                 record.key(), record.value(), record.partition(), record.offset());
@@ -53,5 +58,4 @@ public class KafkaConsumer {
     public void consumeGroupC(ConsumerRecord<String, Order> record) {
         log.info("[Group-C] {}", record.value());
     }
-
 }
