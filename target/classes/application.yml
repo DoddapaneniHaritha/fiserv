@@ -1,0 +1,15 @@
+
+server:
+  port: 8080
+
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+fi:
+  base-url: ${FI_BASE_URL:http://localhost:9000}
+  api-key: ${FI_API_KEY:}
+  kafka:
+    topic: ${FI_KAFKA_TOPIC:fi-events}
+  connect-timeout-ms: ${FI_CONNECT_TIMEOUT_MS:5000}
+  read-timeout-ms: ${FI_READ_TIMEOUT_MS:10000}

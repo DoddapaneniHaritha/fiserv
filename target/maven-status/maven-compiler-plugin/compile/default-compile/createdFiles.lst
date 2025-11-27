@@ -1,0 +1,7 @@
+com\example\fi\FiRestEndpointKafkaApplication.class
+com\example\fi\service\FiEventService.class
+com\example\fi\config\KafkaProducerConfig.class
+com\example\fi\model\FiEvent.class
+com\example\fi\controller\FiEventController.class
+com\example\fi\config\FiProperties.class
+com\example\fi\exception\GlobalExceptionHandler.class
