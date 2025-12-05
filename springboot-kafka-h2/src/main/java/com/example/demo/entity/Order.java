@@ -8,10 +8,10 @@ import lombok.Data;
 @Table(name = "orders")
 public class Order {
     @Id
-
-    private String orderId;
+    private Long OrgId;
     private double amount;
-    private String status;
+    private String EventType;
 
     // Getters and Setters
 }
+
