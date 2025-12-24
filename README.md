@@ -19,7 +19,7 @@ Orders with the same customerId are sent to the same partition.
 Consumers read and log data from the same topic. There are three consumers in different groups; if one consumer goes down, another takes over.
 Finally, the data is stored in the database.
 
-Git Link: git clone https://github.com/DoddapaneniHaritha/fiserv.git
+
 
 Run zookeeper:
 .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
